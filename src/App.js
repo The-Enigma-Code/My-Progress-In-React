@@ -1,17 +1,13 @@
 import React from 'react';
-import L5UseReducerExercises from './MyLearning/L5UseReducerExercises';
-
-
-// import L4UseReducer from './MyLearning/L4UseReducer';
-
-
+import Main from './Exercises/Ex12_Otp_Generator/Main';
+import './Exercises/Ex12_Otp_Generator/Otp.css'
 
 
 const App = () => {
+ 
   return (
     <>
- <L5UseReducerExercises/>
-
+<Main/>
     </>
   );
 };
