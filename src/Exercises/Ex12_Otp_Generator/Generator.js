@@ -6,10 +6,7 @@ const {setOtp, setShowGeneratedOtp,disableGenerator, setDisableGenerator,resetCo
     const displayGeneratedOtp = useCallback(() => {
         setShowGeneratedOtp(true);
     }, [setShowGeneratedOtp]);
-
-    //Disable otp generator button
-  
-  
+    
     const generateOtp = () => {
         const generatedOtp = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10)).join('');
         setOtp(generatedOtp);

@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { OtpContext } from './OtpContextProv';
 
 const InputField = () => {
- const { setInputOtpArr, inputOtpArr, otp,refIndex, setRefIndex} = useContext(OtpContext)
- 
+  const { setInputOtpArr, inputOtpArr, otp, refIndex, setRefIndex,setCountdown } = useContext(OtpContext)
+
   const inpRefs = useRef([]);//all input will bw store in this array
   const submitRef = useRef(null);
 
@@ -13,7 +13,7 @@ const InputField = () => {
     }
   }
   useEffect(() => {
-    if (inpRefs.current[refIndex] && refIndex < 5) {
+    if ((inpRefs.current && inpRefs.current[refIndex]) && refIndex < 5) {
       inpRefs.current[refIndex].focus();
     }
     else {
@@ -23,14 +23,15 @@ const InputField = () => {
     }
   }, [refIndex]);
 
-const removeElement = (index)=>{
-  const tempArr = [...inputOtpArr];
-  tempArr[index]='';
-  setInputOtpArr(tempArr)
-}
+  const removeElement = (index) => {
+    const tempArr = [...inputOtpArr];
+    tempArr[index] = '';
+    setInputOtpArr(tempArr)
+  }
   return (
     <div className='inputFieldCont'>
       Enter the OTP
+      <br />
       <div className='inpCont'>
         {Array.from
           ({ length: 5 },
@@ -39,8 +40,8 @@ const removeElement = (index)=>{
               className='inputField' key={index} type="text" ref={addInpRefs}
               value={inputOtpArr[index] || ''} //Imp Note ReactJs #32
               onChange={(e) => {
-                console.log("triggered.......",refIndex)
-                if ((!isNaN(e.target.value)) && e.target.value.slice(-1) !== ' ' && e.target.value!=='') {
+                console.log("triggered.......", refIndex)
+                if ((!isNaN(e.target.value)) && e.target.value.slice(-1) !== ' ' && e.target.value !== '') {
                   const tempArr = [...inputOtpArr];
                   tempArr[index] = e.target.value.slice(-1);
                   setInputOtpArr(tempArr);
@@ -67,19 +68,21 @@ const removeElement = (index)=>{
         }
       </div>
       <div>
-        {'Array: ' + inputOtpArr.map((element, index) => ` ${element}`)}
+        {/* {'Array: ' + inputOtpArr.map((element, index) => ` ${element}`)}
         <br />
         {'length: ' + inputOtpArr.length}
         <br />
         {'ref ' + refIndex}
+        <br /> */}
         <br />
         <button className="submitBtn" ref={submitRef}
-          disabled={inputOtpArr.includes('')||inputOtpArr.length<5}
+          disabled={inputOtpArr.includes('') || inputOtpArr.length < 5}
           onClick={() => {
-
             const tempArr = [...inputOtpArr];
-
             tempArr.join('') === otp ? alert("Success") : alert("Failed")
+            setInputOtpArr([]);
+            setRefIndex(0);
+            setCountdown(10);
           }
           }>SUBMIT</button>
       </div>

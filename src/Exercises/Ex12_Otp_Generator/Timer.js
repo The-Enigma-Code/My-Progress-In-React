@@ -1,6 +1,5 @@
 import React,{useContext,useEffect}from 'react'
 import { OtpContext } from './OtpContextProv';
-
 const Timer = () => {
     const {disableGenerator, setDisableGenerator,countdown,setCountdown} = useContext(OtpContext);
     

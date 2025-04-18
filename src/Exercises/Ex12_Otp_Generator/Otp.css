@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(92, 179, 100);
+    background-color: rgb(36, 43, 44);
 }
 .otpCont{
     display: flex;
@@ -36,6 +36,7 @@ body{
   font-weight: bold;
     font-size: 2vh;
     gap:0.6vh;
+    color: white;
 }
 .inpAndDispCont{
     display: flex;
@@ -64,13 +65,17 @@ body{
     height: 6vh;;
     font-size: 2.5vh;
     font-weight: bold;
-    background-color: rgb(0, 255, 51);
+    border-radius: 3vh;
+    background-color: rgb(5, 146, 247);
 }
 .timer-text{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 3vh;
+    font-size: 2.8vh;
     font-weight: 400;
+    color: white;
 }
 .countdown{
-    color: red;
+    font-size: 3vh;
+    font-weight: bold;
+    color:rgb(29, 211, 59);
 }
