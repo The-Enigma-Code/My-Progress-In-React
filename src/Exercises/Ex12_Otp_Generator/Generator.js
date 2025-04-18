@@ -1,19 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useContext} from 'react'
+import { OtpContext } from './OtpContextProv';
 
-const Generator = ({ otp, setOtp, setShowGeneratedOtp, propRef }) => {
+const Generator = () => {
+const {setOtp, setShowGeneratedOtp,disableGenerator, setDisableGenerator,resetCountDown,setInputOtpArr, setRefIndex} = useContext(OtpContext)
+    const displayGeneratedOtp = useCallback(() => {
+        setShowGeneratedOtp(true);
+    }, [setShowGeneratedOtp]);
 
+    //Disable otp generator button
+  
+  
     const generateOtp = () => {
         const generatedOtp = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10)).join('');
         setOtp(generatedOtp);
+        displayGeneratedOtp();
+        resetCountDown();
+        setDisableGenerator(true);
+        setInputOtpArr([]);
+        setRefIndex(0);
     }
-    useEffect(() => {
-        if (otp) {
-            setShowGeneratedOtp(true);
-        }
-    }, [otp, propRef, setShowGeneratedOtp])
     return (
         <div>
-            <button className='generatorBtn' onClick={generateOtp}>Generate Otp</button>
+            <button disabled={disableGenerator} className='generatorBtn' onClick={generateOtp}>Generate Otp</button>
+         
         </div>
     )
 }
